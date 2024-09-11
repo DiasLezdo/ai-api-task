@@ -14,6 +14,10 @@ app.use(cors());
 
 const upload = multer({ dest: "uploads/" });
 
+app.get("/", (req, res) => {
+  res.send("hello world!");
+});
+
 // open ai
 // const openai = new OpenAI({
 //   apiKey: process.env.OPENAI_API_KEY,
