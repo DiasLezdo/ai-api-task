@@ -79,8 +79,17 @@ app.post("/upload", upload.single("file"), async (req, res) => {
 
     const userPrompt = `Using the provided resume information, generate 10-15 interview questions and answers tailored to the candidate's role, skills, experiences, and achievements. Resume Information: ${extractedText}`;
 
+    const prompt = `You will be provided with text delimited by triple dashs.If it contains a sequence of instructions,re-write those instructions in the following format:
+
+1.Question:....
+
+Answer:....
+
+--- ${userPrompt} ---`;
+
     const requestData = {
       model: "mistralai/Mistral-7B-Instruct-v0.2",
+      // model: "zero-one-ai/Yi-34B-Chat",
       // model: "gpt-4o-2024-08-06",
       messages: [
         {
@@ -89,7 +98,7 @@ app.post("/upload", upload.single("file"), async (req, res) => {
         },
         {
           role: "user",
-          content: userPrompt,
+          content: prompt,
         },
       ],
       temperature: 0.5,
