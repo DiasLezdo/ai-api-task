@@ -216,9 +216,6 @@ app.post("/uploadGoogle", upload.single("file"), async (req, res) => {
 
     console.log("Extracted Text:", extractedText);
 
-    const systemPrompt =
-      "You are an expert interview assistant specialized in generating personalized interview questions and answers based on resumes. Your goal is to help candidates prepare for interviews by crafting thoughtful, tailored questions that focus on their key skills, experiences, and achievements.";
-
     const userPrompt = `Using the provided resume information, generate 10-15 interview questions and answers tailored to the candidate's role, skills, experiences, and achievements. Resume Information: ${extractedText}`;
 
     const prompt = `You will be provided with text delimited by triple dashs.If it contains a sequence of instructions,re-write those instructions in the following format:
